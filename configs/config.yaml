@@ -1,0 +1,17 @@
+project:
+  name: airfoil-noise-mlops
+  random_state: 42
+
+train:
+  raw_data_path: data/raw/airfoil_self_noise.csv
+  processed_data_dir: data/processed
+  target_column: scaled_sound_pressure
+  validation_size: 0.15
+  test_size: 0.15
+  preprocessing_version: v1
+
+inference:
+  model_path: models/model.joblib
+  metadata_path: models/metadata.json
+  host: 0.0.0.0
+  port: 8000
