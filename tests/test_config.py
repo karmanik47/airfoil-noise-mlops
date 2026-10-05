@@ -24,9 +24,7 @@ def test_environment_override(monkeypatch: pytest.MonkeyPatch) -> None:
     config = load_config()
 
     assert config.inference.port == 9000
-    assert config.inference.model_path == Path(
-        "models/test-model.joblib"
-    )
+    assert config.inference.model_path == Path("models/test-model.joblib")
 
 
 def test_missing_config_file(tmp_path: Path) -> None:

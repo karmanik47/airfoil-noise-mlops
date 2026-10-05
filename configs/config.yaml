@@ -3,7 +3,7 @@ project:
   random_state: 42
 
 train:
-  raw_data_path: data/raw/airfoil_self_noise.csv
+  raw_data_path: data/raw/airfoil_self_noise.dat
   processed_data_dir: data/processed
   target_column: scaled_sound_pressure
   validation_size: 0.15

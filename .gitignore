@@ -24,8 +24,6 @@ htmlcov/
 *.key
 
 # Local data and model artifacts
-data/raw/*
-data/processed/*
 models/*
 artifacts/
 mlruns/

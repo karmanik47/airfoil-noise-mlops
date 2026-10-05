@@ -1,0 +1,5 @@
+outs:
+- md5: b12d5b7b475ec7b3971d97f21e377414
+  size: 59984
+  hash: md5
+  path: airfoil_self_noise.dat
