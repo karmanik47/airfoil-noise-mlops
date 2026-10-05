@@ -4,7 +4,17 @@ version = "0.1.0"
 description = "Воспроизводимый MLOps-проект для прогнозирования аэродинамического шума"
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
-dependencies = []
+dependencies = [
+    "pydantic>=2.13.5",
+    "pyyaml>=6.0.3",
+]
+
+[build-system]
+requires = ["uv_build>=0.12.21,<0.13"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "airfoil_noise"
 
 [tool.ruff]
 line-length = 88
