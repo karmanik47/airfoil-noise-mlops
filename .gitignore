@@ -27,6 +27,8 @@ htmlcov/
 models/*
 artifacts/
 mlruns/
+mlflow.db
+mlartifacts/
 
 # Editors
 .vscode/
