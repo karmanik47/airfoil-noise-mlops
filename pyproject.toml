@@ -1,0 +1,22 @@
+[project]
+name = "airfoil-noise-mlops"
+version = "0.1.0"
+description = "Воспроизводимый MLOps-проект для прогнозирования аэродинамического шума"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = []
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "pytest-cov>=7.1.0",
+    "ruff>=0.16.9",
+]
