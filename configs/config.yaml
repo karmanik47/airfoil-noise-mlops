@@ -17,5 +17,5 @@ inference:
   port: 8000
 
 tracking:
-  uri: file:./mlruns
+  uri: sqlite:///mlflow.db
   experiment_name: airfoil-noise-comparison

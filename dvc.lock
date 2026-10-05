@@ -5,8 +5,8 @@ stages:
     deps:
     - path: configs/config.yaml
       hash: md5
-      md5: 02da615ccbeb93e8230016fdd9f94cd1
-      size: 447
+      md5: d1bb78da59ed1664bce5d88ff8f11e08
+      size: 453
     - path: data/raw/airfoil_self_noise.dat
       hash: md5
       md5: b12d5b7b475ec7b3971d97f21e377414
