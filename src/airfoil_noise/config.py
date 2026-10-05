@@ -22,9 +22,7 @@ class TrainConfig(BaseModel):
     @model_validator(mode="after")
     def validate_split_sizes(self) -> Self:
         if self.validation_size + self.test_size >= 1:
-            raise ValueError(
-                "Сумма validation_size и test_size должна быть меньше 1"
-            )
+            raise ValueError("Сумма validation_size и test_size должна быть меньше 1")
         return self
 
 
@@ -42,15 +40,10 @@ class AppConfig(BaseModel):
 
 
 def load_config(config_path: str | Path | None = None) -> AppConfig:
-    path = Path(
-        config_path
-        or os.getenv("AIRFOIL_CONFIG_PATH", "configs/config.yaml")
-    )
+    path = Path(config_path or os.getenv("AIRFOIL_CONFIG_PATH", "configs/config.yaml"))
 
     if not path.is_file():
-        raise FileNotFoundError(
-            f"Файл конфигурации не найден: {path}"
-        )
+        raise FileNotFoundError(f"Файл конфигурации не найден: {path}")
 
     with path.open(encoding="utf-8") as file:
         raw_config = yaml.safe_load(file)
