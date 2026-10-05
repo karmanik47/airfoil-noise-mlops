@@ -12,7 +12,7 @@ def test_load_config() -> None:
     assert config.project.random_state == 42
     assert config.train.target_column == "scaled_sound_pressure"
     assert config.inference.port == 8000
-    assert config.tracking.uri == "file:./mlruns"
+    assert config.tracking.uri == "sqlite:///mlflow.db"
     assert config.tracking.experiment_name == "airfoil-noise-comparison"
 
 
