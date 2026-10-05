@@ -1,0 +1,27 @@
+schema: '2.0'
+stages:
+  prepare:
+    cmd: uv run prepare-data
+    deps:
+    - path: configs/config.yaml
+      hash: md5
+      md5: cb1da9f16f64ead362a385b7f5f500a5
+      size: 371
+    - path: data/raw/airfoil_self_noise.dat
+      hash: md5
+      md5: b12d5b7b475ec7b3971d97f21e377414
+      size: 59984
+    - path: src/airfoil_noise/config.py
+      hash: md5
+      md5: efd8d1798e1e3f278a1a2778c8fb66d1
+      size: 1990
+    - path: src/airfoil_noise/data/prepare.py
+      hash: md5
+      md5: 331acc4f5eee461ff0096d165293b813
+      size: 5694
+    outs:
+    - path: data/processed
+      hash: md5
+      md5: 3e1ae7c4efc169cee0fa1af80b16248f.dir
+      size: 211857
+      nfiles: 4

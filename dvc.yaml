@@ -1,0 +1,10 @@
+stages:
+  prepare:
+    cmd: uv run prepare-data
+    deps:
+    - configs/config.yaml
+    - data/raw/airfoil_self_noise.dat
+    - src/airfoil_noise/config.py
+    - src/airfoil_noise/data/prepare.py
+    outs:
+    - data/processed

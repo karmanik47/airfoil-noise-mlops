@@ -5,12 +5,15 @@ description = "Воспроизводимый MLOps-проект для прог
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
 dependencies = [
+    "pandas>=3.0.6",
     "pydantic>=2.13.5",
     "pyyaml>=6.0.3",
+    "scikit-learn>=1.9.1",
 ]
 
 [project.scripts]
 download-data = "airfoil_noise.data.download:main"
+prepare-data = "airfoil_noise.data.prepare:main"
 
 [build-system]
 requires = ["uv_build>=0.12.21,<0.13"]
