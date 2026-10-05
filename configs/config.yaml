@@ -15,3 +15,7 @@ inference:
   metadata_path: models/metadata.json
   host: 0.0.0.0
   port: 8000
+
+tracking:
+  uri: file:./mlruns
+  experiment_name: airfoil-noise-comparison

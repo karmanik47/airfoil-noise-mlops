@@ -12,6 +12,8 @@ def test_load_config() -> None:
     assert config.project.random_state == 42
     assert config.train.target_column == "scaled_sound_pressure"
     assert config.inference.port == 8000
+    assert config.tracking.uri == "file:./mlruns"
+    assert config.tracking.experiment_name == "airfoil-noise-comparison"
 
 
 def test_environment_override(monkeypatch: pytest.MonkeyPatch) -> None:
@@ -20,11 +22,20 @@ def test_environment_override(monkeypatch: pytest.MonkeyPatch) -> None:
         "AIRFOIL_MODEL_PATH",
         "models/test-model.joblib",
     )
-
+    monkeypatch.setenv(
+        "MLFLOW_TRACKING_URI",
+        "https://mlflow.example.com",
+    )
+    monkeypatch.setenv(
+        "MLFLOW_EXPERIMENT_NAME",
+        "test-experiment",
+    )
     config = load_config()
 
     assert config.inference.port == 9000
     assert config.inference.model_path == Path("models/test-model.joblib")
+    assert config.tracking.uri == "https://mlflow.example.com"
+    assert config.tracking.experiment_name == "test-experiment"
 
 
 def test_missing_config_file(tmp_path: Path) -> None:

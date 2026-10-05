@@ -33,10 +33,16 @@ class InferenceConfig(BaseModel):
     port: int = Field(ge=1, le=65535)
 
 
+class TrackingConfig(BaseModel):
+    uri: str = Field(min_length=1)
+    experiment_name: str = Field(min_length=1)
+
+
 class AppConfig(BaseModel):
     project: ProjectConfig
     train: TrainConfig
     inference: InferenceConfig
+    tracking: TrackingConfig
 
 
 def load_config(config_path: str | Path | None = None) -> AppConfig:
@@ -52,16 +58,26 @@ def load_config(config_path: str | Path | None = None) -> AppConfig:
         raise TypeError("Конфигурация должна содержать YAML-объект")
 
     inference = raw_config.setdefault("inference", {})
-
-    environment_overrides = {
+    inference_overrides = {
         "AIRFOIL_MODEL_PATH": "model_path",
         "AIRFOIL_HOST": "host",
         "AIRFOIL_PORT": "port",
     }
 
-    for environment_name, config_name in environment_overrides.items():
+    for environment_name, config_name in inference_overrides.items():
         value = os.getenv(environment_name)
         if value is not None:
             inference[config_name] = value
+
+    tracking = raw_config.setdefault("tracking", {})
+    tracking_overrides = {
+        "MLFLOW_TRACKING_URI": "uri",
+        "MLFLOW_EXPERIMENT_NAME": "experiment_name",
+    }
+
+    for environment_name, config_name in tracking_overrides.items():
+        value = os.getenv(environment_name)
+        if value is not None:
+            tracking[config_name] = value
 
     return AppConfig.model_validate(raw_config)
