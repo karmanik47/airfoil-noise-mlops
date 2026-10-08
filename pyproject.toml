@@ -11,7 +11,9 @@ dependencies = [
     "pandas>=3.0.6",
     "pydantic>=2.13.5",
     "pyyaml>=6.0.3",
+    "requests>=2.34.2",
     "scikit-learn>=1.9.1",
+    "streamlit>=1.65.0",
     "uvicorn>=0.54.0",
 ]
 

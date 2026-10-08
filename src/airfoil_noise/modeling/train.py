@@ -67,9 +67,9 @@ def train_final_model() -> dict[str, object]:
         target_column=config.train.target_column,
     )
 
-    model = build_model_candidates(
-        random_state=config.project.random_state
-    )[FINAL_MODEL_NAME]
+    model = build_model_candidates(random_state=config.project.random_state)[
+        FINAL_MODEL_NAME
+    ]
 
     mlflow.set_tracking_uri(config.tracking.uri)
     mlflow.set_experiment(config.tracking.experiment_name)
@@ -95,16 +95,12 @@ def train_final_model() -> dict[str, object]:
         )
 
         joblib.dump(model, config.inference.model_path)
-        model_sha256 = calculate_sha256(
-            config.inference.model_path
-        )
+        model_sha256 = calculate_sha256(config.inference.model_path)
 
         mlflow.log_params(
             {
                 "model_name": FINAL_MODEL_NAME,
-                "preprocessing_version": (
-                    FINAL_PREPROCESSING_VERSION
-                ),
+                "preprocessing_version": (FINAL_PREPROCESSING_VERSION),
                 "random_state": config.project.random_state,
                 "feature_count": len(feature_columns),
                 "feature_names": ",".join(feature_columns),
@@ -123,12 +119,8 @@ def train_final_model() -> dict[str, object]:
         mlflow.set_tags(
             {
                 "git_commit": git_commit,
-                "dataset_sha256": str(
-                    manifest["dataset_sha256"]
-                ),
-                "source_sha256": str(
-                    manifest["source_sha256"]
-                ),
+                "dataset_sha256": str(manifest["dataset_sha256"]),
+                "source_sha256": str(manifest["source_sha256"]),
                 "experiment_stage": "final_evaluation",
                 "selection_metric": "validation_mae",
             }
@@ -149,9 +141,7 @@ def train_final_model() -> dict[str, object]:
 
         metadata: dict[str, object] = {
             "model_name": FINAL_MODEL_NAME,
-            "preprocessing_version": (
-                FINAL_PREPROCESSING_VERSION
-            ),
+            "preprocessing_version": (FINAL_PREPROCESSING_VERSION),
             "feature_columns": feature_columns,
             "target_column": config.train.target_column,
             "training_rows": len(x_training),
