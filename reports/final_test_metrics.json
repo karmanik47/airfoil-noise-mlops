@@ -1,0 +1,26 @@
+{
+  "model_name": "random_forest",
+  "preprocessing_version": "v1",
+  "feature_columns": [
+    "frequency",
+    "angle_of_attack",
+    "chord_length",
+    "free_stream_velocity",
+    "suction_side_displacement_thickness"
+  ],
+  "target_column": "scaled_sound_pressure",
+  "training_rows": 1277,
+  "test_rows": 226,
+  "random_state": 42,
+  "test_metrics": {
+    "mae": 1.4446013118796162,
+    "rmse": 1.9284494621979373,
+    "r2": 0.9165028418609078
+  },
+  "dataset_sha256": "c4539e0edffd13ea296e0d657ffa9845a839a5d4fee77da1472160b8c9b7e3c0",
+  "source_sha256": "74c75fd71783f1e6b71f8a622b993dc592897a97cd689c5090a07147a1b097b3",
+  "model_sha256": "38a3abf4f32306bf67defc660066f5f296e5f0423bcb2d3e17907e60fadbccff",
+  "git_commit": "af7ece147f124a7c6903aa69bf2f614770fe779a",
+  "mlflow_run_id": "82a0ed10784d48309acddcaf54612b6c",
+  "mlflow_model_uri": "models:/m-251b70aee7d0430a851e797c385d329c"
+}

@@ -5,12 +5,14 @@ description = "Воспроизводимый MLOps-проект для прог
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
 dependencies = [
+    "fastapi>=0.142.2",
     "joblib>=1.6.0",
     "mlflow>=3.16.1",
     "pandas>=3.0.6",
     "pydantic>=2.13.5",
     "pyyaml>=6.0.3",
     "scikit-learn>=1.9.1",
+    "uvicorn>=0.54.0",
 ]
 
 [project.scripts]
@@ -18,6 +20,7 @@ download-data = "airfoil_noise.data.download:main"
 prepare-data = "airfoil_noise.data.prepare:main"
 run-experiments = "airfoil_noise.modeling.experiment:main"
 train-final-model = "airfoil_noise.modeling.train:main"
+serve-api = "airfoil_noise.api.app:main"
 
 [build-system]
 requires = ["uv_build>=0.12.21,<0.13"]
@@ -37,6 +40,7 @@ pythonpath = ["src"]
 [dependency-groups]
 dev = [
     "dvc>=3.67.1",
+    "httpx>=0.28.1",
     "pytest>=9.1.1",
     "pytest-cov>=7.1.0",
     "ruff>=0.16.9",
