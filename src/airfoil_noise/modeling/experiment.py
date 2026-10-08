@@ -44,13 +44,9 @@ def load_dataset_version(
         )
 
     if not manifest_path.is_file():
-        raise FileNotFoundError(
-            f"Манифест датасета не найден: {manifest_path}"
-        )
+        raise FileNotFoundError(f"Манифест датасета не найден: {manifest_path}")
 
-    manifest = json.loads(
-        manifest_path.read_text(encoding="utf-8")
-    )
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
 
     if not isinstance(manifest, dict):
         raise TypeError("Манифест должен содержать JSON-объект")
@@ -75,11 +71,7 @@ def get_feature_columns(
 ) -> list[str]:
     excluded_columns = NON_FEATURE_COLUMNS | {target_column}
 
-    return [
-        column
-        for column in dataset.columns
-        if column not in excluded_columns
-    ]
+    return [column for column in dataset.columns if column not in excluded_columns]
 
 
 def select_dataset_split(
@@ -143,9 +135,7 @@ def run_experiments() -> pd.DataFrame:
             target_column=config.train.target_column,
         )
 
-        models = build_model_candidates(
-            random_state=config.project.random_state
-        )
+        models = build_model_candidates(random_state=config.project.random_state)
 
         for model_name, model in models.items():
             run_name = f"{model_name}-{preprocessing_version}"
@@ -181,12 +171,8 @@ def run_experiments() -> pd.DataFrame:
                 mlflow.set_tags(
                     {
                         "git_commit": git_commit,
-                        "dataset_sha256": str(
-                            manifest["dataset_sha256"]
-                        ),
-                        "source_sha256": str(
-                            manifest["source_sha256"]
-                        ),
+                        "dataset_sha256": str(manifest["dataset_sha256"]),
+                        "source_sha256": str(manifest["source_sha256"]),
                         "experiment_stage": "model_selection",
                     }
                 )
@@ -213,9 +199,7 @@ def run_experiments() -> pd.DataFrame:
                     {
                         "run_id": active_run.info.run_id,
                         "model_name": model_name,
-                        "preprocessing_version": (
-                            preprocessing_version
-                        ),
+                        "preprocessing_version": (preprocessing_version),
                         "feature_count": len(feature_columns),
                         "validation_mae": metrics["mae"],
                         "validation_rmse": metrics["rmse"],

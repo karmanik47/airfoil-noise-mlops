@@ -18,12 +18,10 @@ def test_create_final_datasets() -> None:
         }
     )
 
-    x_training, y_training, x_test, y_test = (
-        create_final_datasets(
-            dataset=dataset,
-            feature_columns=["feature"],
-            target_column="target",
-        )
+    x_training, y_training, x_test, y_test = create_final_datasets(
+        dataset=dataset,
+        feature_columns=["feature"],
+        target_column="target",
     )
 
     assert x_training["feature"].tolist() == [
