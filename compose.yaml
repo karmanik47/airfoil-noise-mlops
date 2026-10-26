@@ -2,7 +2,7 @@ services:
   api:
     build:
       context: .
-    image: airfoil-noise-app:latest
+    image: airfoil-noise-app:1.0.0
     command: ["serve-api"]
     ports:
       - "8000:8000"
@@ -10,7 +10,7 @@ services:
   streamlit:
     build:
       context: .
-    image: airfoil-noise-app:latest
+    image: airfoil-noise-app:1.0.0
     command:
       - streamlit
       - run

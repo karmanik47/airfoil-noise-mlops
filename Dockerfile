@@ -1,4 +1,4 @@
-FROM python:3.12-slim
+FROM python:3.12-slim@sha256:a0f57064cbdcd6285fa45f51237ab0b35ea8ebaed06a1f5973e89e19dfb86704
 
 COPY --from=ghcr.io/astral-sh/uv:0.12.21 /uv /uvx /bin/
 
@@ -7,6 +7,7 @@ ENV PYTHONUNBUFFERED=1
 ENV UV_NO_DEV=1
 ENV UV_LINK_MODE=copy
 ENV PATH="/app/.venv/bin:$PATH"
+ENV HOME="/home/appuser"
 
 WORKDIR /app
 
@@ -17,6 +18,17 @@ RUN uv sync --locked --no-dev
 
 COPY configs ./configs
 COPY models ./models
+
+RUN groupadd --system appgroup \
+    && useradd \
+        --system \
+        --gid appgroup \
+        --create-home \
+        --home-dir /home/appuser \
+        appuser \
+    && chown -R appuser:appgroup /app
+
+USER appuser
 
 EXPOSE 8000
 

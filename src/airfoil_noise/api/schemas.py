@@ -14,3 +14,4 @@ class PredictionResponse(BaseModel):
     unit: str
     model_name: str
     preprocessing_version: str
+    model_sha256: str

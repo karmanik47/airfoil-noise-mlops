@@ -29,10 +29,18 @@ def get_predictor() -> ModelPredictor:
 
 
 @app.get("/health")
-def health() -> dict[str, str]:
+def health(
+    predictor: Annotated[
+        ModelPredictor,
+        Depends(get_predictor),
+    ],
+) -> dict[str, str]:
     return {
         "status": "ok",
         "service": "airfoil-noise-api",
+        "model_name": predictor.model_name,
+        "preprocessing_version": (predictor.preprocessing_version),
+        "model_sha256": predictor.model_sha256,
     }
 
 
@@ -54,6 +62,7 @@ def predict(
         unit="dB",
         model_name=predictor.model_name,
         preprocessing_version=(predictor.preprocessing_version),
+        model_sha256=predictor.model_sha256,
     )
 
 

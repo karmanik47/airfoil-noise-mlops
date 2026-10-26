@@ -9,6 +9,7 @@ from airfoil_noise.api.app import app, get_predictor
 class FakePredictor:
     model_name = "test-model"
     preprocessing_version = "v1"
+    model_sha256 = "test-model-sha256"
 
     def predict(
         self,
@@ -34,6 +35,9 @@ def test_health(client: TestClient) -> None:
     assert response.json() == {
         "status": "ok",
         "service": "airfoil-noise-api",
+        "model_name": "test-model",
+        "preprocessing_version": "v1",
+        "model_sha256": "test-model-sha256",
     }
 
 
@@ -55,6 +59,7 @@ def test_predict(client: TestClient) -> None:
         "unit": "dB",
         "model_name": "test-model",
         "preprocessing_version": "v1",
+        "model_sha256": "test-model-sha256",
     }
 
 

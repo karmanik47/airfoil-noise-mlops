@@ -40,6 +40,7 @@ class ModelPredictor:
         self.feature_columns = feature_columns
         self.model_name = str(raw_metadata["model_name"])
         self.preprocessing_version = str(raw_metadata["preprocessing_version"])
+        self.model_sha256 = str(raw_metadata["model_sha256"])
 
     def predict(
         self,
