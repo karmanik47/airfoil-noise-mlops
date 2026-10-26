@@ -9,7 +9,7 @@ from airfoil_noise.ui.client import (
 
 API_URL = os.getenv(
     "AIRFOIL_API_URL",
-    "http://127.0.0.1:8000",
+    "http://localhost:8000",
 ).rstrip("/")
 
 st.set_page_config(

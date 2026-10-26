@@ -16,3 +16,11 @@ reports
 .env
 .vscode
 .idea
+
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+secrets/
