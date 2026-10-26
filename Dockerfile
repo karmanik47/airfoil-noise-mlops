@@ -1,0 +1,30 @@
+FROM python:3.12-slim
+
+COPY --from=ghcr.io/astral-sh/uv:0.12.21 /uv /uvx /bin/
+
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+ENV UV_NO_DEV=1
+ENV UV_LINK_MODE=copy
+ENV PATH="/app/.venv/bin:$PATH"
+
+WORKDIR /app
+
+COPY pyproject.toml uv.lock README.md ./
+COPY src ./src
+
+RUN uv sync --locked --no-dev
+
+COPY configs ./configs
+COPY models ./models
+
+EXPOSE 8000
+
+HEALTHCHECK \
+    --interval=10s \
+    --timeout=3s \
+    --start-period=10s \
+    --retries=3 \
+    CMD python -c "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=2)"
+
+CMD ["serve-api"]
